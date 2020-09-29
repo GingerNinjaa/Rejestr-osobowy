@@ -432,7 +432,7 @@
             this.btnClear.Text = "Wyczyść";
             this.btnClear.UseVisualStyleBackColor = false;
             this.btnClear.Visible = false;
-            this.btnClear.Click += new System.EventHandler(this.btnAction_Click);
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // Form1
             // 
