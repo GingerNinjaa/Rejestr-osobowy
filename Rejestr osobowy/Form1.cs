@@ -23,6 +23,17 @@ namespace Rejestr_osobowy
     {
         private const string Path = "D:\\Serialization.xml";
         List<Person> persons = new List<Person>();
+
+        public Form1()
+        {
+            InitializeComponent();
+            panelSubMenu.Visible = false;
+
+            PopulateDataGridView();
+            PopulateComboBox();
+        }
+
+        #region Interfaces
         public void Deserialize()
         {
             List<Person> usersList = null;
@@ -33,27 +44,22 @@ namespace Rejestr_osobowy
         }
         public bool Validate()
         {
+            //chceck if null or whitespace
             if (string.IsNullOrWhiteSpace(txtFirstName.Text) && string.IsNullOrWhiteSpace(txtLastName.Text)
                 && string.IsNullOrWhiteSpace(txtAge.Text) && string.IsNullOrWhiteSpace(txtGender.Text)
                && string.IsNullOrWhiteSpace(txtCity.Text) && string.IsNullOrWhiteSpace(txtPostalCode.Text)
-               && string.IsNullOrWhiteSpace(txtStreat.Text) && string.IsNullOrWhiteSpace(txtNumber.Text)) 
+               && string.IsNullOrWhiteSpace(txtStreat.Text) && string.IsNullOrWhiteSpace(txtNumber.Text))
             { this.Alert("Sprawdź wprowadzone dane!", Messages.enmType.Error); return false; }
 
+
+            //chceck if age is number
             if (!int.TryParse(txtAge.Text, out int n))
             {
                 this.Alert("Sprawdź wprowadzone dane!", Messages.enmType.Error); return false;
             }
             return true;
         }
-
-        public Form1()
-        {
-            InitializeComponent();
-            panelSubMenu.Visible = false;
-
-            PopulateDataGridView();
-            PopulateComboBox();
-        }
+        #endregion
 
         #region Populate
         private void PopulateComboBox()
@@ -80,7 +86,6 @@ namespace Rejestr_osobowy
 
             if (File.Exists(Path))
             {
-
                 Deserialize();
 
                 var xDoc = XDocument.Load(Path);
@@ -123,15 +128,13 @@ namespace Rejestr_osobowy
         }
         #endregion
 
+        #region Logic
         private void showSubMenu(Panel subMenu)
         {
-            // jeśli submenu jest schowane 
+            // chceck if submenu is close
             if (subMenu.Visible == false)
             {
-                //chowaj wszystkie submenu
-                // hideSubMenu();
-
-                //pokaż to nasze submenu
+                //Show submenu
                 subMenu.Visible = true;
             }
             else
@@ -163,9 +166,8 @@ namespace Rejestr_osobowy
             }
             catch (Exception)
             {
-               // this.Alert("Ooops", Messages.enmType.Error);
+                // this.Alert("Ooops", Messages.enmType.Error);
             }
-
         }
         private void EditNewPerson(int Id)
         {
@@ -200,9 +202,7 @@ namespace Rejestr_osobowy
                 {
                     this.Alert("Ooops", Messages.enmType.Error);
                 }
-
             }
-
         }
         private void DeletePerson(int Id)
         {
@@ -216,14 +216,11 @@ namespace Rejestr_osobowy
                     this.lblCounter.Text = count.ToString();
                     this.Alert($"Usunieto osobe o id = {Id}", Messages.enmType.Success);
                 }
-
             }
             catch (Exception)
             {
                 this.Alert("Ooops", Messages.enmType.Error);
             }
-
-
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -243,6 +240,8 @@ namespace Rejestr_osobowy
             populateTextBoxs(user);
 
         }
+
+        //Window with informations
         private void Alert(string msg, Messages.enmType type)
         {
             Messages popup = new Messages();
@@ -304,6 +303,7 @@ namespace Rejestr_osobowy
 
         }
 
+        #endregion
 
         #region Butons
         private void btnMenu_Click(object sender, EventArgs e)
@@ -398,9 +398,6 @@ namespace Rejestr_osobowy
             PopulateDataGridView();
         }
         #endregion
-
-
-
 
     }
 }
