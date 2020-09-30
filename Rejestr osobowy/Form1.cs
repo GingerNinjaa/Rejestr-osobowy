@@ -93,20 +93,20 @@ namespace Rejestr_osobowy
                 count = xDoc.Descendants("Osoba").Count();
                 this.lblCounter.Text = count.ToString();
 
-                dataGridView1.DataSource = persons;
+                dgvPersonTable.DataSource = persons;
 
                 //Column names
-                dataGridView1.Columns[0].HeaderText = "Id";
-                dataGridView1.Columns[1].HeaderText = "Imię";
-                dataGridView1.Columns[2].HeaderText = "Nazwisko";
-                dataGridView1.Columns[3].HeaderText = "Wiek";
-                dataGridView1.Columns[4].HeaderText = "Płeć";
-                dataGridView1.Columns[5].HeaderText = "Miasto";
-                dataGridView1.Columns[6].HeaderText = "Kod Pocztowy";
-                dataGridView1.Columns[7].HeaderText = "Ulica";
-                dataGridView1.Columns[8].HeaderText = "Numer Domu/Mieszkania";
+                dgvPersonTable.Columns[0].HeaderText = "Id";
+                dgvPersonTable.Columns[1].HeaderText = "Imię";
+                dgvPersonTable.Columns[2].HeaderText = "Nazwisko";
+                dgvPersonTable.Columns[3].HeaderText = "Wiek";
+                dgvPersonTable.Columns[4].HeaderText = "Płeć";
+                dgvPersonTable.Columns[5].HeaderText = "Miasto";
+                dgvPersonTable.Columns[6].HeaderText = "Kod Pocztowy";
+                dgvPersonTable.Columns[7].HeaderText = "Ulica";
+                dgvPersonTable.Columns[8].HeaderText = "Numer Domu/Mieszkania";
 
-                this.dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                this.dgvPersonTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
         }
         private void populateTextBoxs(Person model)
@@ -224,22 +224,27 @@ namespace Rejestr_osobowy
             }
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvPersonTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int Id = 0;
-            try
+            var test = e;
+            if (e.ColumnIndex != -1) 
             {
-                Id = Convert.ToInt32(this.dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+                Id = Convert.ToInt32(this.dgvPersonTable.Rows[e.RowIndex].Cells[0].Value.ToString());
             }
-            catch (Exception)
+            else
             {
+                try
+                {
+                    Id = Convert.ToInt32(this.dgvPersonTable.SelectedRows[0].Cells[0].Value.ToString());
+                }
+                catch (Exception)
+                {
+                }
             }
-
 
             var user = persons.Find(x => x.id == Id);
-
             populateTextBoxs(user);
-
         }
 
         //Window with informations
@@ -267,38 +272,38 @@ namespace Rejestr_osobowy
             switch (category)
             {
                 case "id":
-                    dataGridView1.DataSource = persons.FindAll(x => x.id.ToString().Equals(txtSearch.Text)).ToList().OrderBy(x => x.id);
+                    dgvPersonTable.DataSource = persons.FindAll(x => x.id.ToString().Equals(txtSearch.Text)).ToList().OrderBy(x => x.id);
                     break;
                 case "name":
-                    dataGridView1.DataSource = persons.Where(x => x.name.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
+                    dgvPersonTable.DataSource = persons.Where(x => x.name.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
                     break;
                 case "lastName":
-                    dataGridView1.DataSource = persons.Where(x => x.lastName.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
+                    dgvPersonTable.DataSource = persons.Where(x => x.lastName.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
                     break;
                 case "age":
-                    dataGridView1.DataSource = persons.FindAll(x => x.age.ToString().Contains(txtSearch.Text)).ToList().OrderBy(x => x.age);
+                    dgvPersonTable.DataSource = persons.FindAll(x => x.age.ToString().Contains(txtSearch.Text)).ToList().OrderBy(x => x.age);
                     break;
                 case "gender":
-                    dataGridView1.DataSource = persons.Where(x => x.gender.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
+                    dgvPersonTable.DataSource = persons.Where(x => x.gender.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
                     break;
                 case "city":
-                    dataGridView1.DataSource = persons.Where(x => x.city.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
+                    dgvPersonTable.DataSource = persons.Where(x => x.city.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
                     break;
                 case "postalCode":
-                    dataGridView1.DataSource = persons.Where(x => x.postalCode.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
+                    dgvPersonTable.DataSource = persons.Where(x => x.postalCode.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
                     break;
                 case "streat":
-                    dataGridView1.DataSource = persons.Where(x => x.streat.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
+                    dgvPersonTable.DataSource = persons.Where(x => x.streat.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
                     break;
                 case "number":
-                    dataGridView1.DataSource = persons.Where(x => x.number.ToLower().Equals(txtSearch.Text.ToLower())).ToList();
+                    dgvPersonTable.DataSource = persons.Where(x => x.number.ToLower().Equals(txtSearch.Text.ToLower())).ToList();
                     break;
 
             }
 
             if (txtSearch.Text == string.Empty)
             {
-                dataGridView1.DataSource = persons;
+                dgvPersonTable.DataSource = persons;
             }
 
 

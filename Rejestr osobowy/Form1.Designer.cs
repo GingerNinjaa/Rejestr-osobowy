@@ -56,7 +56,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.txtCity = new System.Windows.Forms.TextBox();
             this.btnAction = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvPersonTable = new System.Windows.Forms.DataGridView();
             this.label10 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.cbSelectFilter = new System.Windows.Forms.ComboBox();
@@ -66,7 +66,7 @@
             this.panelButtons.SuspendLayout();
             this.panelSubMenu.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPersonTable)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMenu
@@ -367,20 +367,20 @@
             this.btnAction.Visible = false;
             this.btnAction.Click += new System.EventHandler(this.btnAction_Click);
             // 
-            // dataGridView1
+            // dgvPersonTable
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(173, 303);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(0);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1002, 297);
-            this.dataGridView1.TabIndex = 5;
-            this.dataGridView1.Text = "dataGridView1";
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dgvPersonTable.AllowUserToAddRows = false;
+            this.dgvPersonTable.AllowUserToDeleteRows = false;
+            this.dgvPersonTable.AllowUserToOrderColumns = true;
+            this.dgvPersonTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPersonTable.Location = new System.Drawing.Point(173, 303);
+            this.dgvPersonTable.Margin = new System.Windows.Forms.Padding(0);
+            this.dgvPersonTable.MultiSelect = false;
+            this.dgvPersonTable.Name = "dgvPersonTable";
+            this.dgvPersonTable.Size = new System.Drawing.Size(1002, 297);
+            this.dgvPersonTable.TabIndex = 5;
+            this.dgvPersonTable.Text = "dataGridView1";
+            this.dgvPersonTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPersonTable_CellClick);
             // 
             // label10
             // 
@@ -447,7 +447,7 @@
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.btnAction);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvPersonTable);
             this.Controls.Add(this.txtCity);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtPostalCode);
@@ -471,7 +471,7 @@
             this.panelButtons.ResumeLayout(false);
             this.panelSubMenu.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPersonTable)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -505,7 +505,7 @@
         private System.Windows.Forms.TextBox txtPostalCode;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtCity;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvPersonTable;
         private System.Windows.Forms.Button btnAction;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtSearch;
