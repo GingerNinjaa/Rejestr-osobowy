@@ -21,7 +21,8 @@ namespace Rejestr_osobowy
 {
     public partial class Form1 : Form, IDeserialize, IValidateEntry
     {
-        private const string Path = "C:\\Serialization.xml";
+        private string Path  = Environment.CurrentDirectory + "-SpisLudności.xml";
+        //private const string Path = "C:\\Serialization.xml";
         List<Person> persons = new List<Person>();
 
         public Form1()
